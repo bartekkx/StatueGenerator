@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Statue Generator</title>
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/colorjs.io@0.5.2/dist/color.global.js" integrity="sha256-QJcjgth3y4v89OC1TZTLKDp8FwOHSr5glFrQxuCEJAA=" crossorigin="anonymous"></script>
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+          },
+          "integrity": {
+            "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js": "sha256-zh+kGN4WoZSVqfcklVgOMBXXdFwpbTzgSFiX+QLd7fs=",
+            "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/controls/OrbitControls.js": "sha256-gO+q3qT4pjamX7C9CL/vYvPZOgu5Ti51APIxdsXAf04="
+          }
+        }
+    </script>
+    <script src="resources.js"></script>
+    <script src="core.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <div id="image_input" class="block">
+        <div class="subblock">
+            <span>Input username:</span>
+            <input type="text", id="username_input">
+            <input type="button" value="Submit" id="submit_button">
+            <br>
+            <span>or file:</span>
+            <input type="file" name="file" id="image_file", accept="image/*">
+        </div>
+
+        <div class="subblock">
+            <span>Choose model type:</span>
+            <select id="model_type" name="model_type"></select>
+        </div>
+
+        <div class="subblock">
+            <span>Input preview:</span>
+            <br>
+            <div id="input_preview" class="preview-left">
+
+            </div>
+        </div>
+
+        <div class="subblock">
+            <table>
+                <tr>
+                    <th>Brightness:</th>
+                    <td>
+                        <input type="range" min="0" max="200" value="100" id="brightness_slider">
+                        <input type="number" min="0" max="200" value="100" id="brightness_value">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Contrast:</th>
+                    <td>
+                        <input type="range" min="0" max="200" value="100" id="contrast_slider">
+                        <input type="number" min="0" max="200" value="100" id="contrast_value">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Saturation:</th>
+                    <td>
+                        <input type="range" min="0" max="200" value="100" id="saturation_slider">
+                        <input type="number" min="0" max="200" value="100" id="saturation_value">
+                    </td>
+                </tr>
+            </table>
+            <label class="checkbox-option unselectable">
+                <span>Merge second layer:</span>
+                <input type="checkbox", id="merge_second_layer">
+            </label>
+        </div>
+    </div>
+
+    <div id="settings" class="block">
+        <div class="subblock">
+            <span>Choose version:</span>
+            <select name="version" id="version"></select>
+        </div>
+
+        <div class="subblock">
+            <span>Choose distance function:</span>
+            <select name="distance_function" id="distance_function"></select>
+        </div>
+
+        <div class="subblock">
+            <span>Ignore pixels with opacity less than:</span>
+            <br>
+            <input type="range" min="0" max="255" value="255" id="ignore_pixels_slider">
+            <input type="number" min="0" max="255" value="255" id="ignore_pixels_value">
+        </div>
+
+        <div class="subblock">
+            <span>Select palette:</span>
+            <br>
+            <div id="palette" class="unselectable"></div>
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="subblock">
+            <label class="checkbox-option unselectable">
+                <span>Remove non visible blocks: </span>
+                <input type="checkbox" checked id="reduce_blocks">
+            </label>
+            <label class="checkbox-option unselectable">
+                <span>Add string under gravity blocks: </span>
+                <input type="checkbox" checked id="add_string">
+            </label>
+        </div>
+        <div class="subblock">
+            <span>Change visibility of parts and their precedence:</span>
+            <br>
+            <ul id="model_elements"></ul>
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="subblock">
+            <span>Output preview:</span>
+            <br>
+            <div id="output_preview" class="preview-right">
+
+            </div>
+        </div>
+
+        <div class="subblock">
+            <button id="save_as_nbt">Export as .nbt</button>
+        </div>
+
+        <div class="subblock">
+            <span>Material list:</span>
+            <div id="output_materials"></div>
+        </div>
+    </div>
+
+    <div id="warnings"></div>
+
+    <script src="index.js" type="module"></script>
+</body>
+</html>

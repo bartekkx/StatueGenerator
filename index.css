@@ -1,0 +1,271 @@
+:root {
+    --hover-color: linear-gradient(0.75turn, #d4deeb, #fbf0ff);
+    --element-color: #d1d1d1; 
+    --background-color: #303030;
+    --font-color: #cccccc;
+    --node-color: #404040;
+    --dragging-over-bar: #1a78f7;
+    
+    --dragging-over-side: -1;
+}
+
+body {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    background-color: var(--background-color);
+    color: var(--font-color);
+}
+
+select {
+    background-color: var(--element-color);
+    border: none;
+    border-radius: 2px;
+    padding: 2px;
+    outline: none;
+}
+
+option {
+    background-color: var(--element-color);
+}
+
+select:hover,
+input[type="file"]::file-selector-button:hover,
+button:hover,
+input[type="button"]:hover {
+    cursor: pointer;
+    background: var(--hover-color);
+    transition: 0.25s;
+}
+
+button,
+input[type="file"]::file-selector-button,
+input[type="number"],
+input[type="text"],
+input[type="button"] {
+    padding: 3px 7px;
+    border: none;
+    border-radius: 2px;
+    background-color: var(--element-color);
+    margin: 1px;
+    outline: none;
+}
+
+input[type="number"]:hover,
+input[type="text"]:hover {
+    background: var(--hover-color);
+    transition: 0.25s;
+}
+
+.preview-left > canvas,
+.preview-right > canvas {
+    margin: 5px 0px 0px 0px;
+    border-radius: 10px;
+}
+
+#palette > details > div > * {
+    vertical-align: middle;
+}
+
+#palette > details > div {
+    padding-left: 18px;
+}
+
+#palette > details > summary:hover {
+    cursor: pointer;
+}
+
+#model_elements * ul, #model_elements {
+    padding-inline-start: 25px;
+    list-style: none;
+    list-style-type: none;
+}
+
+#model_elements * span, .dragging_preview {
+    background-color: var(--node-color);
+    border-radius: 2px;
+    display: inline-block;
+    width: 150px;
+    margin: 1px 1px;
+}
+
+#model_elements * span:hover {
+    cursor: pointer;
+}
+
+input[type="number"],
+input[type="range"] {
+    vertical-align: middle;
+}
+
+.checkbox-option > * {
+    vertical-align: middle;
+}
+
+.checkbox-option {
+    display: block;
+}
+
+.block {
+    margin: 6px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+    float: inline-start;
+}
+
+.subblock {
+    margin: 6px;
+    border: 1px solid rgb(177, 177, 177);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.disabled input {
+    filter: grayscale(100%);
+}
+
+.unselectable {
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.last-node > details > summary {
+    list-style: none;
+}
+
+.last-node > details > ul {
+    display: none;
+}
+
+.dragging-over > details > summary > span {
+    box-shadow: 0 calc(var(--dragging-over-side)*2px) 0 var(--dragging-over-bar);
+}
+
+.preview-left {
+    position: relative;
+    display: block;
+    margin-left: 0px;
+    margin-right: auto;
+    max-width: fit-content;
+}
+
+.preview-right {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: 0px;
+    max-width: fit-content;
+}
+
+.resize-button {
+    height: 20px;
+    width: 20px;
+    padding: 2px;
+    position: absolute;
+    bottom: 2px;
+    background: none;
+    border: none;
+    color: white;
+}
+
+.preview-right > .resize-button {
+    left: 0px;
+    margin-left: 0px;
+}
+
+.preview-left > .resize-button {
+    right: 0px;
+    margin-right: 0px;
+}
+
+.preview-right > .resize-button:hover {
+    cursor: nesw-resize;
+    background: none;
+}
+
+.preview-left > .resize-button:hover {
+    cursor: nwse-resize;
+    background: none;
+}
+
+.reset-view-button {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    bottom: 0px;
+    background: none;
+    border: none;
+    color: white;
+}
+
+.preview-left > .reset-view-button {
+    left: 0px;
+}
+
+.preview-right > .reset-view-button {
+    right: 0px;
+}
+
+.reset-view-button:hover {
+    cursor: pointer;
+    background: none;
+}
+
+#warnings {
+    position: absolute;
+}
+
+#warnings > div {
+    background-color: #747474;
+    color: white;
+    display: block;
+    margin: 10px;
+    width: 400px;
+    height: 55px;
+    border-radius: 3px;
+    opacity: 1;
+}
+
+#warnings > div > div {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#warnings > div > div > span {
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+#warnings > div > div > button {
+    background: none;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    color: white;
+}
+
+#output_materials {
+    margin: 4px 2px;
+}
+
+#output_materials > table > tr > td > img {
+    vertical-align: bottom;
+}
+
+#output_materials > table > tr > button {
+    background: none;
+    color: white;
+    padding: 0px;
+    margin: 2px;
+    width: 15px;
+    height: 15px;
+}
